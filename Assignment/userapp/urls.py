@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import DetailView, SearchView, get_images, IndexView
+from .views import DetailView, SearchView, get_images, IndexVie
 
 urlpatterns = [
 	path('',IndexView,name='IndexView'),
