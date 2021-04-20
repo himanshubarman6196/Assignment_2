@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+{% block content %}
+
+<h1>Search </h1>
+{% include "show_message.html" %}
+<form method="GET" action="">
+<input type="search" name="search">
+<button type="submit">Search</button>
+</form>
+{% if data %}
+<table>
+	<tr>
+		<td>Name</td>
+		<td>Url</td>
+		<td>Phone No.</td>
+	</tr>
+	{% for i in data %}
+	<tr>
+		<td>{{ i.name }}</td>
+		<td>{{ i.url }}</td>
+		<td>{{ i.phone_number }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endif %}
+<style type="text/css">
+	table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+
+{% endblock content %}

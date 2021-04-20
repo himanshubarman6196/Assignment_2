@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+{% block content %}
+{% if form.errors %}
+      {% for field in form %}
+           {% for error in field.errors %}
+                <li style="color:red;">{{field.label}}: {{ error|escape }}</li>
+           {% endfor %}
+      {% endfor %}
+{% endif %}
+{% include "show_message.html" %}
+<form action="" method="POST">
+{% csrf_token %}
+{{ form|crispy }}	
+
+<button type="submit">Save</button>
+</form>
+
+<style type="text/css">
+	form {
+  text-align: center;
+}
+</style>
+{% endblock content %}
