@@ -5,6 +5,10 @@ from django.contrib import messages
 # Create your views here.
 
 
+def IndexView(request):
+    return render(request,'index.html')
+
+
 
 def DetailView(request):
     
