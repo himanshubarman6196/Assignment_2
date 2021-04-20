@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Detail
-from .forms import DetailForm
+from .models import Detail, GetImageSearch, ShowImage
+from .forms import DetailForm, PostImageUrlForm
 from django.contrib import messages
 # Create your views here.
 
@@ -43,7 +43,29 @@ def SearchView(request):
 
 
 def get_images(request):
-    return render(request,'userauth/show_image.html')
+    form = PostImageUrlForm()
+    context = {}
+
+    
+    if request.method == "GET":
+        all_images = GetImageSearch.objects.filter().all()
+        context = { 
+        'Images':all_images,
+        'form':form
+        }
+        
+        
+    if request.method == "POST":
+        form = PostImageUrlForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Image uploaded')
+            redirect('get_images')
+
+    return render(request,'userauth/show_image.html',context)
+
+
+
 
 
 

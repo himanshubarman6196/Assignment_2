@@ -10,11 +10,11 @@
       {% endfor %}
 {% endif %}
 {% include "show_message.html" %}
-<form action="" method="POST">
+<form action="" method="POST" class="form-horizontal">
 {% csrf_token %}
-{{ form|crispy }}	
+{{ form | crispy }}	
 
-<button type="submit">Save</button>
+<button type="submit" class="btn btn-primary">Save</button>
 </form>
 
 <style type="text/css">

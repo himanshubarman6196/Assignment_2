@@ -9,3 +9,14 @@ class Detail(models.Model):
     url   		 = models.URLField(max_length = 200, blank=False)
     phone_number = PhoneNumberField(unique=True)
     # phone_number = PhoneField(blank=False, help_text='Contact phone number')
+
+class GetImageSearch(models.Model):
+	name  		 = models.CharField(max_length = 200, blank=False,null=True)
+	upload 		 = models.ImageField(upload_to ='uploads/')
+	date_added   = models.DateTimeField(auto_now_add=True)
+
+
+class ShowImage(models.Model):
+	show_image = models.BooleanField(default=False)
+
+

@@ -1,5 +1,53 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %} 
 {% block content %}
-<h1>Show Image</h1>
+{% if form.errors %}
+      {% for field in form %}
+           {% for error in field.errors %}
+                <li style="color:red;">{{field.label}}: {{ error|escape }}</li>
+           {% endfor %}
+      {% endfor %}
+{% endif %}
+
+{% include "show_message.html" %}
+<h1>Upload Image</h1>
+<form action="" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form|crispy }}
+<button type="submit">Save</button>
+</form>
+
+<a href="{% url 'get_images' %}">Show All Images</a>
+
+<table>
+	<tr>
+		<td>Name</td>
+		<td>Image</td>
+	</tr>
+	{% for i in Images %}
+	<tr>
+		<td>{{ i.name }}</td>
+		<td><img src="/media/{{ i.upload }}"></td>
+	</tr>
+	{% endfor %}
+</table>
+
+
+<style type="text/css">
+	table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 {% endblock content %}
